@@ -2,70 +2,76 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.104+-green)](https://fastapi.tiangolo.com/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.2-blue)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.3-38B2AC)](https://tailwindcss.com/)
 
-> 一个集"发现 → 评估 → 体验"为一体的 AI Agent 目录平台，通过智能对话为用户精准匹配场景最佳 Agent。
+> 一个专注于展示高质量 AI Agent 的网络平台，为用户提供全面的 Agent 发现和评估体验。
 
 ## 🎯 项目愿景
 
-随着各类 AI Agent 的快速涌现，开发者与终端用户难以快速发现、评估并使用最合适的 Agent。Agent Store 旨在提供一个高质量、可持续更新的 Agent 目录，通过多轮对话与隐式行为数据，为用户提供个性化推荐。
+随着 AI Agent 生态的快速发展，用户面临着信息分散、评估困难的问题。Agent Store 旨在构建一个专业的 AI Agent 展示平台，通过精心策划的内容和直观的用户界面，帮助用户快速发现、了解并选择合适的 AI Agent。
 
 ### 核心价值
 
-- **对终端用户**：目录浏览 + 智能匹配；最佳实践一键试用；媒体摘要/播客降低学习曲线
-- **对 Agent 开发团队**："被收录"即认证；流量入口；隐式质量指标与用户需求洞察
-- **对投资/咨询机构**：数据 API；榜单与报告
+- **对用户**：一站式 AI Agent 发现平台，提供详细的产品信息和团队背景
+- **对 Agent 团队**：专业的展示平台，提升品牌曝光和用户触达
+- **对行业**：促进 AI Agent 生态的透明度和健康发展
 
 ## ✨ 主要功能
 
-### 🔍 智能发现与匹配
-- **分类浏览**：按应用场景、行业、技术栈、热门程度、最新上线等维度分类
-- **智能搜索**：关键词 + 多维度筛选（免费/付费、开源/闭源等）
-- **AI 匹配对话**：自然语言描述需求 → LLM 多轮澄清 → 返回 Top N Agent 推荐
+### 🔍 智能发现与浏览
+- **分类浏览**：按应用场景（开发工具、计算机视觉、工作流自动化等）和行业分类
+- **智能搜索**：支持关键词搜索 Agent 名称、描述和标签
+- **多维度筛选**：按分类、行业等维度快速筛选
 
-### 📋 Agent 详情页
-- **基础信息**：功能、定价、API 链接、Demo
-- **媒体动态**：自动抓取公众号/X/Twitter/YouTube/小红书等公开内容
-- **产品设计哲学摘要**：LLM 整理主题化摘要，支持 TTS 播客播放
-- **最佳实践 Playbooks**：文字或视频卡片，含步骤概要，一键试用
+### 📋 Agent 详情展示
+- **基础信息**：Logo、名称、功能描述、官网链接
+- **团队背景**：创始人信息、公司简介、技术栈、融资情况
+- **媒体动态**：相关文章、视频、播客等媒体内容
+- **标签系统**：多维度标签，便于分类和搜索
 
-### 🎯 用户体验
-- **一键试用**：直接跳转 Agent 官网，记录调用日志
-- **个性化推荐**：基于隐式行为数据的智能推荐
-- **收藏订阅**：收藏 Agent，接收更新推送
-
-### 👥 社区功能
-- **Playbook 投稿**：官方 + 用户投稿通道，分级审核机制
-- **用户提交链接**：主动提交相关媒体链接，审核后加入自动抓取
-- **互动提问**：嵌入式 Agent Bot（RAG：知识库 + Playbook）
+### 🎨 用户体验
+- **响应式设计**：完美适配桌面、平板和移动设备
+- **现代化界面**：基于 Tailwind CSS 的简洁美观设计
+- **流畅交互**：Framer Motion 动效，提升用户体验
 
 ## 🏗️ 技术架构
 
 ### 前端技术栈
-- **框架**：Next.js 14 + React Server Components
-- **样式**：Tailwind CSS + shadcn/ui
-- **动效**：Framer Motion
-- **SEO**：SSR + Sitemap + JSON-LD
+- **框架**：Next.js 14 + React 18
+- **语言**：TypeScript 5.2
+- **样式**：Tailwind CSS 3.3
+- **动效**：Framer Motion 10.16
+- **图标**：Lucide React
+- **工具**：ESLint + PostCSS + Autoprefixer
 
-### 后端技术栈
-- **API 网关**：FastAPI + 中间件（Auth、Rate-limit、缓存、CORS）
-- **LLM 应用层**：Haystack 2.x + 自定义 Pipeline
-- **向量存储**：pgvector（PostgreSQL 扩展）+ Haystack DocumentStore
-- **LLM 服务**：Deepseek
-- **TTS**：OpenAI Audio API
-
-### 基础设施
-- **内容管线**：无头浏览器抓取 → 清洗 → Haystack 摘要 Pipeline → S3 存储
-- **监控**：Prometheus + Grafana + Sentry
-- **部署**：支持灰度发布，99.5% Uptime
+### 项目结构
+```
+frontend/
+├── app/                    # Next.js App Router
+│   ├── globals.css        # 全局样式
+│   ├── layout.tsx         # 根布局
+│   └── page.tsx           # 首页
+├── components/            # React 组件
+│   ├── Header.tsx         # 页面头部
+│   ├── Hero.tsx           # 英雄区域
+│   ├── FilterBar.tsx      # 筛选栏
+│   ├── AgentGrid.tsx      # Agent 网格
+│   └── AgentCard.tsx      # Agent 卡片
+├── lib/                   # 工具函数
+│   ├── data.ts           # 模拟数据
+│   └── utils.ts          # 工具函数
+├── types/                 # TypeScript 类型定义
+│   └── index.ts          # 类型接口
+└── public/               # 静态资源
+    └── logos/            # Agent Logo
+```
 
 ## 🚀 快速开始
 
 ### 环境要求
 - Node.js 18+
-- Python 3.9+
-- PostgreSQL 14+ (with pgvector extension)
-- Redis 6+
+- npm 或 yarn
 
 ### 安装步骤
 
@@ -75,86 +81,99 @@ git clone https://github.com/your-org/agent-store.git
 cd agent-store
 ```
 
-2. **安装前端依赖**
+2. **安装依赖**
 ```bash
 cd frontend
 npm install
 ```
 
-3. **安装后端依赖**
+3. **启动开发服务器**
 ```bash
-cd backend
-pip install -r requirements.txt
-```
-
-4. **环境配置**
-```bash
-# 复制环境变量模板
-cp .env.example .env
-
-# 配置必要的环境变量
-# - DATABASE_URL
-# - REDIS_URL
-# - DEEPSEEK_API_KEY
-# - OPENAI_API_KEY
-```
-
-5. **数据库初始化**
-```bash
-# 运行数据库迁移
-python manage.py migrate
-
-# 初始化向量扩展
-psql -d your_db -c "CREATE EXTENSION IF NOT EXISTS vector;"
-```
-
-6. **启动服务**
-```bash
-# 启动后端服务
-cd backend
-uvicorn main:app --reload
-
-# 启动前端服务
-cd frontend
 npm run dev
 ```
 
-访问 http://localhost:3000 开始使用！
+4. **访问应用**
+打开浏览器访问 [http://localhost:3000](http://localhost:3000)
 
-## 📊 核心指标
+### 构建生产版本
+```bash
+npm run build
+npm start
+```
 
-- **North Star**：由匹配对话产生的"首日完成任务"次数 / DAU
-- **性能指标**：首页加载 < 2s；匹配结果 < 3s 返回
-- **体验指标**：体验转化率 ≥ 10%（匹配→试用）
-- **质量指标**：95% Agent 详情页在 < 1s 内渲染
+## 📊 当前功能状态
+
+### ✅ 已实现功能
+- [x] 响应式首页布局
+- [x] Agent 卡片展示
+- [x] 分类和行业筛选
+- [x] 关键词搜索
+- [x] 团队信息展示
+- [x] 媒体内容展示
+- [x] 现代化 UI 设计
+
+### 🚧 开发中功能
+- [ ] Agent 详情页面
+- [ ] 后端 API 集成
+- [ ] 数据库设计
+- [ ] 内容管理系统
+- [ ] 用户认证系统
+
+### 📋 计划功能
+- [ ] AI 智能推荐
+- [ ] 用户评价系统
+- [ ] 收藏和订阅功能
+- [ ] 数据分析和统计
+- [ ] 移动端应用
+
+## 🎨 设计特色
+
+### 视觉设计
+- **简洁现代**：采用简洁的设计语言，突出内容本身
+- **色彩搭配**：使用专业的配色方案，提升品牌形象
+- **图标系统**：统一的图标设计，提升视觉一致性
+
+### 交互设计
+- **流畅动效**：Framer Motion 提供流畅的页面过渡效果
+- **响应式布局**：完美适配各种设备尺寸
+- **直观操作**：简单易懂的操作流程
 
 ## 🔧 开发指南
 
-### 项目结构
-```
-agent-store/
-├── frontend/                 # Next.js 前端应用
-│   ├── app/                 # App Router 页面
-│   ├── components/          # React 组件
-│   └── lib/                 # 工具函数
-├── backend/                 # FastAPI 后端服务
-│   ├── api/                 # API 路由
-│   ├── core/                # 核心配置
-│   ├── models/              # 数据模型
-│   └── services/            # 业务逻辑
-├── docs/                    # 项目文档
-└── scripts/                 # 部署脚本
+### 代码规范
+- 使用 TypeScript 进行类型安全开发
+- 遵循 ESLint 代码规范
+- 组件采用函数式编程风格
+- 使用 Tailwind CSS 进行样式开发
+
+### 组件开发
+```typescript
+// 组件示例
+interface AgentCardProps {
+  agent: Agent
+  onClick?: () => void
+}
+
+export default function AgentCard({ agent, onClick }: AgentCardProps) {
+  return (
+    <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
+      {/* 组件内容 */}
+    </div>
+  )
+}
 ```
 
-### 开发规范
-- 遵循 SOLID 原则和 KISS 原则
-- 使用 TypeScript 进行类型安全开发
-- 代码提交前运行 lint 和测试
-- 遵循 Git Flow 工作流
+### 样式开发
+```css
+/* 使用 Tailwind CSS 类名 */
+.container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+```
 
 ## 🤝 贡献指南
 
-我们欢迎社区贡献！请查看 [CONTRIBUTING.md](./CONTRIBUTING.md) 了解详细指南。
+我们欢迎社区贡献！请查看以下指南：
 
 ### 贡献方式
 - 🐛 报告 Bug
@@ -163,6 +182,13 @@ agent-store/
 - 🔧 提交代码修复
 - 🎨 优化用户界面
 
+### 开发流程
+1. Fork 项目
+2. 创建功能分支 (`git checkout -b feature/AmazingFeature`)
+3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
+4. 推送到分支 (`git push origin feature/AmazingFeature`)
+5. 创建 Pull Request
+
 ## 📄 许可证
 
 本项目采用 MIT 许可证 - 查看 [LICENSE](./LICENSE) 文件了解详情。
@@ -170,16 +196,22 @@ agent-store/
 ## 🔗 相关链接
 
 - [项目文档](./docs/)
+- [产品需求文档](./docs/PRD.md)
+- [设计规范](./docs/design-system.md)
 - [API 文档](./docs/API.md)
-- [数据模型](./docs/erd.md)
-- [开发计划](./docs/todolist.md)
 
 ## 📞 联系我们
 
 - 项目主页：https://github.com/your-org/agent-store
 - 问题反馈：https://github.com/your-org/agent-store/issues
-- 邮箱：contact@agent-store.com
+- 邮箱：hello@agentstore.com
+
+## 🙏 致谢
+
+感谢所有为这个项目做出贡献的开发者和设计师！
 
 ---
 
 **Agent Store** - 让 AI Agent 的发现与使用变得简单高效 🚀
+
+*构建更好的 AI 生态，从 Agent Store 开始*
