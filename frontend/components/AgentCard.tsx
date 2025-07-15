@@ -23,10 +23,23 @@ export default function AgentCard({ agent, index }: AgentCardProps) {
         <div className="flex items-start justify-between mb-4">
           {/* Logo and Name */}
           <div className="flex items-center space-x-4">
-            <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">
-                {agent.name.charAt(0)}
-              </span>
+            <div className="w-12 h-12 rounded-lg flex items-center justify-center overflow-hidden">
+              <img 
+                src={agent.logo} 
+                alt={`${agent.name} logo`}
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  // 如果图片加载失败，回退到首字母显示
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                  target.nextElementSibling?.classList.remove('hidden');
+                }}
+              />
+              <div className="w-full h-full bg-gradient-to-br from-primary-500 to-primary-600 rounded-lg flex items-center justify-center hidden">
+                <span className="text-white font-bold text-lg">
+                  {agent.name.charAt(0)}
+                </span>
+              </div>
             </div>
             <div>
               <h3 className="text-xl font-bold text-gray-900">{agent.name}</h3>

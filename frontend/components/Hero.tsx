@@ -2,6 +2,7 @@
 
 import { ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { mockAgents } from '@/lib/data'
 
 export default function Hero() {
   return (
@@ -58,9 +59,9 @@ export default function Hero() {
               <div className="absolute inset-0 p-8">
                 <div className="grid grid-cols-4 gap-4 h-full">
                   {/* Agent Logo Items */}
-                  {Array.from({ length: 20 }).map((_, index) => (
+                  {mockAgents.map((agent, index) => (
                     <motion.div
-                      key={index}
+                      key={agent.id}
                       initial={{ scale: 0, opacity: 0 }}
                       animate={{ 
                         scale: [0, 1, 0.8, 1],
@@ -75,9 +76,22 @@ export default function Hero() {
                       }}
                       className="relative group"
                     >
-                      <div className="w-full h-full bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-110">
-                        <div className="text-white text-xs font-bold">
-                          Agent {index + 1}
+                      <div className="w-full h-full bg-white rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-110 overflow-hidden">
+                        <img 
+                          src={agent.logo} 
+                          alt={`${agent.name} logo`}
+                          className="w-3/4 h-3/4 object-contain"
+                          onError={(e) => {
+                            // 如果图片加载失败，回退到首字母显示
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = 'none';
+                            target.nextElementSibling?.classList.remove('hidden');
+                          }}
+                        />
+                        <div className="w-full h-full bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center hidden">
+                          <div className="text-white text-xs font-bold">
+                            {agent.name.charAt(0)}
+                          </div>
                         </div>
                       </div>
                       
