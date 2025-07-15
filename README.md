@@ -11,6 +11,8 @@
 
 随着 AI Agent 生态的快速发展，用户面临着信息分散、评估困难的问题。Agent Store 旨在构建一个专业的 AI Agent 展示平台，通过精心策划的内容和直观的用户界面，帮助用户快速发现、了解并选择合适的 AI Agent。
 
+![](./images/Agentstore-screenshot.png)
+
 ### 核心价值
 
 - **对用户**：一站式 AI Agent 发现平台，提供详细的产品信息和团队背景
