@@ -8,6 +8,11 @@ export const metadata: Metadata = {
   title: 'Agent Store - 发现 AI Native Agent',
   description: 'Agent Store 是一个专注于展示 AI Native Agent 的平台',
   keywords: 'AI Native Agent, 人工智能, 智能助手, 自动化工具',
+  icons: {
+    icon: '/favicon.png',
+    shortcut: '/favicon.png',
+    apple: '/favicon.png',
+  },
 }
 
 export default function RootLayout({

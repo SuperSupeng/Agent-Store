@@ -85,10 +85,12 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <div className="w-6 h-6 bg-primary-500 rounded-full flex items-center justify-center">
-                  <span className="text-white text-sm font-bold">★</span>
-                </div>
+              <div className="flex items-center space-x-3 mb-4">
+                <img 
+                  src="/logos/AgentStore.png" 
+                  alt="Agent Store Logo" 
+                  className="h-10 w-auto"
+                />
                 <span className="text-xl font-bold">Agent Store</span>
               </div>
               <p className="text-gray-400">
