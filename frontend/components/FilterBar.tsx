@@ -3,22 +3,12 @@
 import { useState } from 'react'
 import { ChevronDown, Filter } from 'lucide-react'
 import { categories, industries } from '@/lib/data'
+import { useSearch } from '@/contexts/SearchContext'
 
-interface FilterBarProps {
-  onCategoryChange: (category: string) => void
-  onIndustryChange: (industry: string) => void
-  selectedCategory: string
-  selectedIndustry: string
-}
-
-export default function FilterBar({
-  onCategoryChange,
-  onIndustryChange,
-  selectedCategory,
-  selectedIndustry
-}: FilterBarProps) {
+export default function FilterBar() {
   const [isCategoryOpen, setIsCategoryOpen] = useState(false)
   const [isIndustryOpen, setIsIndustryOpen] = useState(false)
+  const { selectedCategory, setSelectedCategory, selectedIndustry, setSelectedIndustry } = useSearch()
 
   return (
     <div className="bg-white border-b border-gray-200 sticky top-16 z-40">
@@ -35,6 +25,8 @@ export default function FilterBar({
             <button
               onClick={() => setIsCategoryOpen(!isCategoryOpen)}
               className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:border-primary-500 transition-colors"
+              aria-label="选择分类"
+              aria-expanded={isCategoryOpen}
             >
               <span className="text-gray-700">
                 {selectedCategory === '全部' ? '所有分类' : selectedCategory}
@@ -48,7 +40,7 @@ export default function FilterBar({
                   <button
                     key={category}
                     onClick={() => {
-                      onCategoryChange(category)
+                      setSelectedCategory(category)
                       setIsCategoryOpen(false)
                     }}
                     className={`w-full text-left px-4 py-2 hover:bg-gray-50 transition-colors ${
@@ -67,6 +59,8 @@ export default function FilterBar({
             <button
               onClick={() => setIsIndustryOpen(!isIndustryOpen)}
               className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:border-primary-500 transition-colors"
+              aria-label="选择行业"
+              aria-expanded={isIndustryOpen}
             >
               <span className="text-gray-700">
                 {selectedIndustry === '全部' ? '所有行业' : selectedIndustry}
@@ -80,7 +74,7 @@ export default function FilterBar({
                   <button
                     key={industry}
                     onClick={() => {
-                      onIndustryChange(industry)
+                      setSelectedIndustry(industry)
                       setIsIndustryOpen(false)
                     }}
                     className={`w-full text-left px-4 py-2 hover:bg-gray-50 transition-colors ${

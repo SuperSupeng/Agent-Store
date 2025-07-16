@@ -5,6 +5,19 @@ import { motion } from 'framer-motion'
 import { mockAgents } from '@/lib/data'
 
 export default function Hero() {
+  // 预定义位置，避免每次渲染重新计算
+  const agentPositions = [
+    { top: '10%', left: '15%', size: 'w-16 h-16' },
+    { top: '25%', left: '65%', size: 'w-16 h-16' },
+    { top: '45%', left: '10%', size: 'w-16 h-16' },
+    { top: '60%', left: '70%', size: 'w-16 h-16' },
+    { top: '75%', left: '25%', size: 'w-16 h-16' },
+    { top: '15%', left: '45%', size: 'w-16 h-16' },
+    { top: '35%', left: '80%', size: 'w-16 h-16' },
+    { top: '80%', left: '55%', size: 'w-16 h-16' },
+    { top: '50%', left: '35%', size: 'w-16 h-16' }
+  ]
+
   return (
     <section className="relative min-h-screen flex items-center">
       {/* Gradient Background */}
@@ -57,78 +70,62 @@ export default function Hero() {
             <div className="relative w-full h-96 lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-gray-900 to-gray-800">
               {/* Agent Logos Container */}
               <div className="absolute inset-0 p-8">
-                {/* Agent Logo Items - Random Positioning */}
-                {mockAgents.map((agent, index) => {
-                  // 生成随机位置和大小 - 统一尺寸避免不一致
-                  const positions = [
-                    { top: '10%', left: '15%', size: 'w-16 h-16' },
-                    { top: '25%', left: '65%', size: 'w-16 h-16' },
-                    { top: '45%', left: '10%', size: 'w-16 h-16' },
-                    { top: '60%', left: '70%', size: 'w-16 h-16' },
-                    { top: '75%', left: '25%', size: 'w-16 h-16' },
-                    { top: '15%', left: '45%', size: 'w-16 h-16' },
-                    { top: '35%', left: '80%', size: 'w-16 h-16' },
-                    { top: '80%', left: '55%', size: 'w-16 h-16' },
-                    { top: '50%', left: '35%', size: 'w-16 h-16' }
-                  ];
-                  
-                  const position = positions[index] || positions[0];
-                  const randomRotation = Math.random() * 20 - 10; // -10到10度的随机旋转
-                  const randomDelay = Math.random() * 2; // 随机延迟
+                {/* Agent Logo Items - 使用预定义位置 */}
+                {mockAgents.slice(0, 9).map((agent, index) => {
+                  const position = agentPositions[index] || agentPositions[0]
+                  const rotationAngle = (index % 3 - 1) * 5 // 轻微的旋转角度
                   
                   return (
                     <motion.div
                       key={agent.id}
                       initial={{ scale: 0, opacity: 0, rotate: 0 }}
                       animate={{ 
-                        scale: [0, 1, 0.9, 1],
-                        opacity: [0, 1, 0.8, 1],
-                        rotate: [0, randomRotation, -randomRotation, randomRotation],
-                        y: [0, -5, 5, 0]
+                        scale: [0, 1, 0.95, 1],
+                        opacity: [0, 1, 0.9, 1],
+                        rotate: [0, rotationAngle, -rotationAngle, rotationAngle]
                       }}
                       transition={{ 
-                        duration: 3,
-                        delay: index * 0.3, // 初始出现时也错开
+                        duration: 2,
+                        delay: index * 0.2,
                         repeat: Infinity,
-                        repeatType: "reverse"
+                        repeatType: "reverse",
+                        ease: "easeInOut"
                       }}
                       style={{
                         position: 'absolute',
                         top: position.top,
                         left: position.left,
-                        transform: `rotate(${randomRotation}deg)`
                       }}
                       className={`${position.size} relative group`}
                     >
                       <motion.div 
                         className="w-full h-full bg-white rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
-                        whileHover={{ scale: 1.15 }}
+                        whileHover={{ scale: 1.15, rotate: 5 }}
                         animate={{
-                          scale: [1, 1.3, 1],
+                          scale: [1, 1.1, 0.95, 1],
+                          y: [0, -8, 4, 0],
                           boxShadow: [
                             "0 10px 15px -3px rgba(0, 0, 0, 0.1)",
-                            "0 25px 35px -5px rgba(59, 130, 246, 0.4)",
+                            "0 20px 25px -5px rgba(59, 130, 246, 0.3)",
                             "0 10px 15px -3px rgba(0, 0, 0, 0.1)"
                           ]
                         }}
                         transition={{
-                          duration: 2,
-                          delay: index * 1.5, // 每个logo间隔1.5秒
+                          duration: 4,
+                          delay: index * 0.8,
                           repeat: Infinity,
-                          repeatDelay: (mockAgents.length - 1) * 1.5, // 等待其他logo都展示完
-                          repeatType: "reverse"
+                          repeatType: "reverse",
+                          ease: "easeInOut"
                         }}
-                        style={{ transformOrigin: 'center' }} // 确保从中心放大
                       >
                         <img 
                           src={agent.logo} 
                           alt={`${agent.name} logo`}
                           className="w-3/4 h-3/4 object-contain"
                           onError={(e) => {
-                            // 如果图片加载失败，回退到首字母显示
-                            const target = e.target as HTMLImageElement;
-                            target.style.display = 'none';
-                            target.nextElementSibling?.classList.remove('hidden');
+                            const target = e.target as HTMLImageElement
+                            target.style.display = 'none'
+                            target.nextElementSibling?.classList.remove('hidden')
                           }}
                         />
                         <div className="w-full h-full bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center hidden">
@@ -138,25 +135,26 @@ export default function Hero() {
                         </div>
                       </motion.div>
                       
-                      {/* Glow Effect */}
+                      {/* Enhanced Glow Effect */}
                       <motion.div
                         animate={{ 
                           opacity: [0.2, 0.6, 0.2],
-                          scale: [1, 1.2, 1]
+                          scale: [1, 1.1, 1]
                         }}
                         transition={{ 
-                          duration: 3 + Math.random() * 2,
+                          duration: 3 + index * 0.5,
                           repeat: Infinity,
-                          repeatType: "reverse"
+                          repeatType: "reverse",
+                          ease: "easeInOut"
                         }}
                         className="absolute inset-0 bg-primary-400 rounded-xl opacity-30 blur-sm"
                       />
                     </motion.div>
-                  );
+                  )
                 })}
               </div>
 
-              {/* Enhanced Floating Connection Lines */}
+              {/* Enhanced Connection Lines */}
               <svg className="absolute inset-0 w-full h-full pointer-events-none">
                 <motion.path
                   d="M 50 80 Q 150 40 250 120 T 450 60 T 650 100"
@@ -165,7 +163,7 @@ export default function Hero() {
                   fill="none"
                   initial={{ pathLength: 0 }}
                   animate={{ pathLength: 1 }}
-                  transition={{ duration: 4, repeat: Infinity }}
+                  transition={{ duration: 4, repeat: Infinity, repeatDelay: 1 }}
                 />
                 <motion.path
                   d="M 100 200 Q 200 160 300 240 T 500 180 T 700 220"
@@ -174,7 +172,7 @@ export default function Hero() {
                   fill="none"
                   initial={{ pathLength: 0 }}
                   animate={{ pathLength: 1 }}
-                  transition={{ duration: 5, repeat: Infinity, delay: 1 }}
+                  transition={{ duration: 5, repeat: Infinity, repeatDelay: 1, delay: 1 }}
                 />
                 <motion.path
                   d="M 80 300 Q 180 260 280 340 T 480 280 T 680 320"
@@ -183,48 +181,48 @@ export default function Hero() {
                   fill="none"
                   initial={{ pathLength: 0 }}
                   animate={{ pathLength: 1 }}
-                  transition={{ duration: 6, repeat: Infinity, delay: 2 }}
+                  transition={{ duration: 6, repeat: Infinity, repeatDelay: 1, delay: 2 }}
                 />
               </svg>
 
-              {/* Center Glow */}
+              {/* Enhanced Center Glow */}
               <motion.div
                 animate={{ 
                   scale: [1, 1.3, 1],
                   opacity: [0.1, 0.4, 0.1]
                 }}
-                transition={{ duration: 5, repeat: Infinity }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute inset-0 bg-gradient-to-r from-primary-500 via-purple-500 to-green-500 rounded-2xl opacity-20"
               />
-            </div>
 
-            {/* Enhanced Floating Elements */}
-            <motion.div
-              animate={{ 
-                y: [-15, 15, -15],
-                x: [-5, 5, -5],
-                rotate: [0, 180, 360]
-              }}
-              transition={{ duration: 4, repeat: Infinity }}
-              className="absolute -top-6 -right-6 w-24 h-24 bg-primary-500 rounded-full opacity-20"
-            />
-            <motion.div
-              animate={{ 
-                y: [15, -15, 15],
-                x: [5, -5, 5],
-                rotate: [360, 180, 0]
-              }}
-              transition={{ duration: 5, repeat: Infinity }}
-              className="absolute -bottom-6 -left-6 w-20 h-20 bg-primary-400 rounded-full opacity-30"
-            />
-            <motion.div
-              animate={{ 
-                y: [-10, 10, -10],
-                scale: [1, 1.2, 1]
-              }}
-              transition={{ duration: 3, repeat: Infinity, delay: 1 }}
-              className="absolute top-1/2 -right-8 w-12 h-12 bg-purple-500 rounded-full opacity-25"
-            />
+              {/* Floating Elements */}
+              <motion.div
+                animate={{ 
+                  y: [-15, 15, -15],
+                  x: [-5, 5, -5],
+                  rotate: [0, 180, 360]
+                }}
+                transition={{ duration: 4, repeat: Infinity }}
+                className="absolute -top-6 -right-6 w-24 h-24 bg-primary-500 rounded-full opacity-20"
+              />
+              <motion.div
+                animate={{ 
+                  y: [15, -15, 15],
+                  x: [5, -5, 5],
+                  rotate: [360, 180, 0]
+                }}
+                transition={{ duration: 5, repeat: Infinity }}
+                className="absolute -bottom-6 -left-6 w-20 h-20 bg-primary-400 rounded-full opacity-30"
+              />
+              <motion.div
+                animate={{ 
+                  y: [-10, 10, -10],
+                  scale: [1, 1.2, 1]
+                }}
+                transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+                className="absolute top-1/2 -right-8 w-12 h-12 bg-purple-500 rounded-full opacity-25"
+              />
+            </div>
           </motion.div>
         </div>
       </div>
