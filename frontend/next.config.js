@@ -39,11 +39,6 @@ const nextConfig = {
   
   // 构建优化
   swcMinify: true,
-  
-  // 环境变量验证
-  env: {
-    CUSTOM_KEY: process.env.CUSTOM_KEY,
-  },
 }
 
 module.exports = nextConfig 

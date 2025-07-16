@@ -3,6 +3,7 @@
 import { memo } from 'react'
 import { motion } from 'framer-motion'
 import { ExternalLink, Calendar, Tag } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import { Agent } from '@/types'
 import { formatDate, truncateText } from '@/lib/utils'
 
@@ -40,6 +41,16 @@ const ImageWithFallback = memo(({ src, alt, className }: { src: string; alt: str
 ImageWithFallback.displayName = 'ImageWithFallback'
 
 const AgentCard = memo(({ agent, index }: AgentCardProps) => {
+  const router = useRouter()
+
+  const handleCardClick = () => {
+    router.push(`/agent/${agent.id}`)
+  }
+
+  const handleExternalLinkClick = (e: React.MouseEvent) => {
+    e.stopPropagation()
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -56,6 +67,7 @@ const AgentCard = memo(({ agent, index }: AgentCardProps) => {
         }
       }}
       className="bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group"
+      onClick={handleCardClick}
     >
       {/* Card Header */}
       <div className="p-6 border-b border-gray-100 relative overflow-hidden">
@@ -120,6 +132,7 @@ const AgentCard = memo(({ agent, index }: AgentCardProps) => {
               rel="noopener noreferrer"
               className="text-primary-500"
               aria-label={`访问 ${agent.name} 官网`}
+              onClick={handleExternalLinkClick}
               whileHover={{ 
                 scale: 1.2,
                 rotate: 15,
@@ -278,6 +291,7 @@ const AgentCard = memo(({ agent, index }: AgentCardProps) => {
           <motion.button 
             className="text-primary-500 text-sm font-medium"
             aria-label={`查看 ${agent.name} 详情`}
+            onClick={handleCardClick}
             whileHover={{ 
               x: 5,
               color: '#ea580c',

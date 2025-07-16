@@ -3,14 +3,15 @@
 const fs = require('fs')
 const path = require('path')
 
-// 必需的环境变量
+// 必需的环境变量（没有默认值的）
 const requiredEnvVars = [
-  'NEXT_PUBLIC_API_BASE_URL',
-  'NEXT_PUBLIC_SITE_URL'
+  // 目前没有严格必需的环境变量，所有都有默认值
 ]
 
-// 可选但推荐的环境变量
+// 推荐的环境变量（有默认值但建议设置）
 const recommendedEnvVars = [
+  'NEXT_PUBLIC_API_BASE_URL',
+  'NEXT_PUBLIC_SITE_URL',
   'NEXT_PUBLIC_ENABLE_ANALYTICS',
   'NEXT_PUBLIC_ENABLE_ERROR_REPORTING',
   'NEXT_PUBLIC_SENTRY_DSN',
@@ -53,6 +54,7 @@ function validateEnvironment() {
       console.warn(`   - ${varName}`)
     })
     console.warn('\n这些变量是可选的，但建议设置以获得完整功能')
+    console.warn('开发环境可以使用默认值继续运行')
   }
   
   console.log('✅ 环境变量验证通过')

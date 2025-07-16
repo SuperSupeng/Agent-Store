@@ -52,7 +52,7 @@ export default function AboutPage() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-xl text-gray-700 max-w-3xl mx-auto"
             >
-              我们致力于连接 AI Agent 开发者与用户，打造一个繁荣、开放、中立的生态系统
+              Agent Store 没有发起方，大家都是共建伙伴。我们致力于连接 AI Agent 开发者与用户，打造一个繁荣、开放、中立的生态系统
             </motion.p>
           </motion.div>
         </div>
@@ -101,7 +101,7 @@ export default function AboutPage() {
                 <Zap className="w-8 h-8 text-primary-600" />
               </motion.div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                我们的核心理念
+                核心理念
               </h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                 以开放、中立、创新为基石，构建下一代 AI Agent 生态
