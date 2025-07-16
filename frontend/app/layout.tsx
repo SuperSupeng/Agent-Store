@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { SearchProvider } from '@/contexts/SearchContext'
+import { ErrorBoundary } from '@/components/ErrorBoundary'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,9 +25,11 @@ export default function RootLayout({
   return (
     <html lang="zh-CN">
       <body className={inter.className}>
-        <SearchProvider>
-          {children}
-        </SearchProvider>
+        <ErrorBoundary>
+          <SearchProvider>
+            {children}
+          </SearchProvider>
+        </ErrorBoundary>
       </body>
     </html>
   )

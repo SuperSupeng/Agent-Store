@@ -4,10 +4,18 @@ import { useState } from 'react'
 import { Search, Menu, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useSearch } from '@/contexts/SearchContext'
+import { InputValidator } from '@/lib/validation'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { searchQuery, setSearchQuery } = useSearch()
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    if (InputValidator.validateSearchQuery(value)) {
+      setSearchQuery(InputValidator.sanitizeSearchQuery(value))
+    }
+  }
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
@@ -43,7 +51,8 @@ export default function Header() {
                 type="text"
                 placeholder="搜索 AI Agent..."
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={handleSearchChange}
+                maxLength={100}
                 className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                 aria-label="搜索 AI Agent"
               />
@@ -70,7 +79,8 @@ export default function Header() {
               type="text"
               placeholder="搜索 AI Agent..."
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={handleSearchChange}
+              maxLength={100}
               className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
               aria-label="搜索 AI Agent"
             />

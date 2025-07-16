@@ -1,5 +1,6 @@
 import { Agent } from '@/types'
 import { mockAgents } from './data'
+import { InputValidator } from './validation'
 
 // API 响应类型
 export interface ApiResponse<T> {
@@ -35,10 +36,17 @@ export class AgentsAPI {
   static async search(query: string): Promise<AgentsResponse> {
     await delay(200)
     
+    // 验证和清理输入
+    if (!InputValidator.validateSearchQuery(query)) {
+      throw new ApiError('Invalid search query', 400, 'INVALID_INPUT')
+    }
+    
+    const sanitizedQuery = InputValidator.sanitizeSearchQuery(query)
+    
     const filteredAgents = mockAgents.filter(agent => 
-      agent.name.toLowerCase().includes(query.toLowerCase()) ||
-      agent.shortDescription.toLowerCase().includes(query.toLowerCase()) ||
-      agent.tags.some(tag => tag.toLowerCase().includes(query.toLowerCase()))
+      agent.name.toLowerCase().includes(sanitizedQuery.toLowerCase()) ||
+      agent.shortDescription.toLowerCase().includes(sanitizedQuery.toLowerCase()) ||
+      agent.tags.some(tag => tag.toLowerCase().includes(sanitizedQuery.toLowerCase()))
     )
 
     return {
@@ -57,21 +65,24 @@ export class AgentsAPI {
   }): Promise<AgentsResponse> {
     await delay(250)
     
+    // 验证和清理过滤器参数
+    const sanitizedFilters = InputValidator.sanitizeFilters(filters)
+    
     let filteredAgents = mockAgents
 
-    if (filters.category && filters.category !== '全部') {
-      filteredAgents = filteredAgents.filter(agent => agent.category === filters.category)
+    if (sanitizedFilters.category && sanitizedFilters.category !== '全部') {
+      filteredAgents = filteredAgents.filter(agent => agent.category === sanitizedFilters.category)
     }
 
-    if (filters.industry && filters.industry !== '全部') {
-      filteredAgents = filteredAgents.filter(agent => agent.industry === filters.industry)
+    if (sanitizedFilters.industry && sanitizedFilters.industry !== '全部') {
+      filteredAgents = filteredAgents.filter(agent => agent.industry === sanitizedFilters.industry)
     }
 
-    if (filters.query) {
+    if (sanitizedFilters.query) {
       filteredAgents = filteredAgents.filter(agent =>
-        agent.name.toLowerCase().includes(filters.query!.toLowerCase()) ||
-        agent.shortDescription.toLowerCase().includes(filters.query!.toLowerCase()) ||
-        agent.tags.some(tag => tag.toLowerCase().includes(filters.query!.toLowerCase()))
+        agent.name.toLowerCase().includes(sanitizedFilters.query!.toLowerCase()) ||
+        agent.shortDescription.toLowerCase().includes(sanitizedFilters.query!.toLowerCase()) ||
+        agent.tags.some(tag => tag.toLowerCase().includes(sanitizedFilters.query!.toLowerCase()))
       )
     }
 

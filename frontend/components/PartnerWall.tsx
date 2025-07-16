@@ -25,7 +25,7 @@ export default function PartnerWall() {
     const scrollSpeed = 0.5 // 滚动速度
 
     const scroll = () => {
-      if (!isHovered) {
+      if (!isHovered && scrollContainer) {
         scrollPositionRef.current += scrollSpeed
         if (scrollPositionRef.current >= scrollContainer.scrollWidth / 2) {
           scrollPositionRef.current = 0
@@ -40,6 +40,7 @@ export default function PartnerWall() {
     return () => {
       if (animationIdRef.current) {
         cancelAnimationFrame(animationIdRef.current)
+        animationIdRef.current = undefined
       }
     }
   }, [isHovered, isExpanded])

@@ -5,12 +5,12 @@ export const mockAgents: Agent[] = [
     id: '1',
     name: 'Cursor',
     description: 'Cursor 是一个基于AI的代码编辑器，集成了强大的代码生成、重构和调试功能。它能够理解代码上下文，提供智能代码补全和实时错误检测，大幅提升开发效率。',
-    shortDescription: 'AI驱动的智能代码编辑器',
+    shortDescription: 'AI 代码编辑器',
     logo: '/logos/cursor.png',
     website: 'https://cursor.sh',
     category: '开发工具',
     industry: '科技',
-    tags: ['代码编辑', 'AI编程', '开发工具', '代码生成'],
+    tags: ['AI编程', '代码生成', '代码调试'],
     createdAt: '2023-01-15',
     team: {
       name: 'Cursor Team',
@@ -339,7 +339,7 @@ export const mockAgents: Agent[] = [
     website: 'https://head.ai',
     category: '客户关系管理',
     industry: '企业服务',
-    tags: ['智能客服', '自然语言处理', '客户服务', 'AI对话'],
+    tags: ['智能客服', '客户服务', 'AI对话'],
     createdAt: '2023-03-10',
     team: {
       name: 'Head Team',
