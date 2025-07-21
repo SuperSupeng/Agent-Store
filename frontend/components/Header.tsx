@@ -23,14 +23,14 @@ export default function Header() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <div className="flex items-center space-x-3">
+            <a href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
               <img 
                 src="/logos/AgentStore.png" 
                 alt="Agent Store Logo" 
                 className="h-10 w-auto"
               />
               <span className="text-xl font-bold text-gray-900">Agent Store</span>
-            </div>
+            </a>
           </div>
 
           {/* Desktop Navigation */}

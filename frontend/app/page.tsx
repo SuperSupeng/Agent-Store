@@ -38,6 +38,7 @@ export default function HomePage() {
       <Hero />
       
       {/* Main Content */}
+      <span id="agents" />
       <main className="relative z-10 bg-white">
         {/* Filter Bar */}
         <FilterBar />

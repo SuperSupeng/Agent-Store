@@ -4,41 +4,57 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.2-blue)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.3-38B2AC)](https://tailwindcss.com/)
 
-> 一个专注于展示高质量 AI Agent 的网络平台，为用户提供全面的 Agent 发现和评估体验。
+> **Your AI Loadout** - 像换装备一样，帮助每个人快速装配最合适的 Agent、Prompt 与工作流，使其在任何任务中表现得如同一支专业团队。
 
 ## 🎯 项目愿景
 
-随着 AI Agent 生态的快速发展，用户面临着信息分散、评估困难的问题。Agent Store 旨在构建一个专业的 AI Agent 展示平台，通过精心策划的内容和直观的用户界面，帮助用户快速发现、了解并选择合适的 AI Agent。
+在 AI Agent 生态快速发展的今天，用户面临着四大核心痛点：
+
+- **信息爆炸** - AI Agent 与工具数量激增，用户在 Google、社群及论坛中耗费大量时间才能找到"可能可用"的方案
+- **品质参差** - 官网 Demo 眩目、项目更新停滞的情况普遍；用户难以判断维护活跃度与实际效果
+- **Prompt 依赖** - 同一 Agent 在不同场景下需要精细 Prompt 才能发挥性能，但缺少系统化整理
+- **缺乏持续赋能** - 即便找到并试用工具，版本更新、替代品及最佳实践等信息也难以及时获知
+
+> **Agent Store = Your AI Loadout**  
+> 用户需要的不只是「工具目录」，而是一条从 **发现 → 装配 → 进化** 的成为 AI 超级个体的最短路径。
 
 ![](./images/Agentstore-screenshot.png)
 
-### 核心价值
+## ✨ 核心功能
 
-- **对用户**：一站式 AI Agent 发现平台，提供详细的产品信息和团队背景
-- **对 Agent 团队**：专业的展示平台，提升品牌曝光和用户触达
-- **对行业**：促进 AI Agent 生态的透明度和健康发展
+### 🔍 Discover - 智能发现
 
-## ✨ 主要功能
+- **Lucy Chat** - 自然语言输入 + 需求澄清 + 智能推荐 Agent 卡片
+- **Faceted Browser** - 任务、健康分多维筛选；Grid 卡片懒加载
+- **健康分徽章** - 社媒最近更新，可点击查看来源数据（0-100分，>70绿色、40-70黄色、<40红色）
 
-### 🔍 智能发现与浏览
-- **分类浏览**：按应用场景（开发工具、计算机视觉、工作流自动化等）和行业分类
-- **智能搜索**：支持关键词搜索 Agent 名称、描述和标签
-- **多维度筛选**：按分类、行业等维度快速筛选
+### ⚡ Equip - 零摩擦上手
 
-### 📋 Agent 详情展示
-- **基础信息**：Logo、名称、功能描述、官网链接
-- **团队背景**：创始人信息、公司简介、技术栈、融资情况
-- **媒体动态**：相关文章、视频、播客等媒体内容
-- **标签系统**：多维度标签，便于分类和搜索
+- **Snapshot 面板** - Agent 详情，包含痛点分析→设计理念→Demo GIF；侧边浮层不跳页
+- **Ready-to-Run Prompt** - 模板+变量，支持一键复制
+- **Skill Card** - 将 Agent + Prompt 绑定为可复用的技能包
 
-### 🎨 用户体验
-- **响应式设计**：完美适配桌面、平板和移动设备
-- **现代化界面**：基于 Tailwind CSS 的简洁美观设计
-- **流畅交互**：Framer Motion 动效，提升用户体验
+### 🎯 差异化优势
+
+- **数据透明** - 健康分让 Agent 状态一目了然
+- **Prompt 模板化** - 每个 Agent 绑定高质量最佳实践 Prompt，并通过变量收集自动定制
+- **Skill Stack 思维** - 把 Agent + Prompt 汇聚为可复用的「技能卡」，从"工具目录"升级为"个人 AI 战斗背包"
+
+## 🚀 用户旅程
+
+| 阶段 | 用户意图 | 关键触点 | 平台支撑功能 | 成功信号 |
+|------|----------|----------|--------------|----------|
+| **Landing** | 初识，寻找灵感 | 首页「Ask Lucy」/「Browse Agents」 | 双 CTA 分流 | 进入 Lucy 对话或 Grid 浏览 |
+| **Discover** | 快速收敛候选 | Lucy 推荐卡 / Facet 筛选 | 语义检索 + Grid & Filter | 点击卡片查看详情 |
+| **Evaluate** | 判断可靠性 | Snapshot 洞察面板 | 健康分、痛点、设计理念摘要 | 点击 Prompt / Demo |
+| **Equip** | 立即上手 | Ready-to-Run Prompt | 变量注入 + 一键复制 / 外链 | 成功运行 Prompt |
+
+> **旅程要点**：所有步骤可在一次会话或一次浏览会话内完成，减少跳转与干扰。
 
 ## 🏗️ 技术架构
 
 ### 前端技术栈
+
 - **框架**：Next.js 14 + React 18
 - **语言**：TypeScript 5.2
 - **样式**：Tailwind CSS 3.3
@@ -47,6 +63,7 @@
 - **工具**：ESLint + PostCSS + Autoprefixer
 
 ### 项目结构
+
 ```
 frontend/
 ├── app/                    # Next.js App Router
@@ -102,52 +119,60 @@ npm run build
 npm start
 ```
 
-## 📊 当前功能状态
+## 📊 功能开发状态
 
 ### ✅ 已实现功能
+
 - [x] 响应式首页布局
 - [x] Agent 卡片展示
 - [x] 分类和行业筛选
 - [x] 关键词搜索
-- [x] 团队信息展示
-- [x] 媒体内容展示
-- [x] 现代化 UI 设计
 
 ### 🚧 开发中功能
-- [ ] Agent 详情页面
-- [ ] 后端 API 集成
-- [ ] 数据库设计
-- [ ] 内容管理系统
-- [ ] 用户认证系统
+
+- [ ] 团队信息展示
+- [ ] 媒体内容展示
+- [ ] 现代化 UI 设计
+- [ ] Lucy 智能推荐系统
+- [ ] 健康分计算算法
+- [ ] Ready-to-Run Prompt 系统
+- [ ] Skill Card 功能
+- [ ] Snapshot 详情面板
 
 ### 📋 计划功能
-- [ ] AI 智能推荐
-- [ ] 用户评价系统
-- [ ] 收藏和订阅功能
+
+- [ ] 用户 Skill Stack 管理
+- [ ] 个性化推荐算法
+- [ ] 社区评价系统
 - [ ] 数据分析和统计
 - [ ] 移动端应用
 
-## 🎨 设计特色
+## 🎨 设计理念
+
+### 核心原则
+
+- **Less is More** - 极简设计，突出核心功能
+- **零摩擦体验** - 从发现到上手，减少任何不必要的步骤
+- **数据驱动** - 通过健康分等透明数据帮助用户决策
+- **技能化思维** - 将 Agent 转化为可复用的技能包
 
 ### 视觉设计
-- **简洁现代**：采用简洁的设计语言，突出内容本身
-- **色彩搭配**：使用专业的配色方案，提升品牌形象
-- **图标系统**：统一的图标设计，提升视觉一致性
 
-### 交互设计
-- **流畅动效**：Framer Motion 提供流畅的页面过渡效果
-- **响应式布局**：完美适配各种设备尺寸
-- **直观操作**：简单易懂的操作流程
+- **简洁现代** - 采用简洁的设计语言，突出内容本身
+- **专业配色** - 使用专业的配色方案，提升品牌形象
+- **流畅动效** - Framer Motion 提供流畅的页面过渡效果
 
 ## 🔧 开发指南
 
 ### 代码规范
+
 - 使用 TypeScript 进行类型安全开发
 - 遵循 ESLint 代码规范
 - 组件采用函数式编程风格
 - 使用 Tailwind CSS 进行样式开发
 
 ### 组件开发
+
 ```typescript
 // 组件示例
 interface AgentCardProps {
@@ -164,31 +189,9 @@ export default function AgentCard({ agent, onClick }: AgentCardProps) {
 }
 ```
 
-### 样式开发
-```css
-/* 使用 Tailwind CSS 类名 */
-.container {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
-}
-```
-
 ## 🤝 贡献指南
 
-我们欢迎社区贡献！请查看以下指南：
-
-### 贡献方式
-- 🐛 报告 Bug
-- 💡 提出新功能建议
-- 📝 改进文档
-- 🔧 提交代码修复
-- 🎨 优化用户界面
-
-### 开发流程
-1. Fork 项目
-2. 创建功能分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 创建 Pull Request
+贡献指南已移至 [CONTRIBUTING.md](./CONTRIBUTING.md)，请查阅该文档获取详细说明。
 
 ## 📄 许可证
 
@@ -199,13 +202,6 @@ export default function AgentCard({ agent, onClick }: AgentCardProps) {
 - [项目文档](./docs/)
 - [产品需求文档](./docs/PRD.md)
 - [设计规范](./docs/design-system.md)
-- [API 文档](./docs/API.md)
-
-## 📞 联系我们
-
-- 项目主页：https://github.com/your-org/agent-store
-- 问题反馈：https://github.com/your-org/agent-store/issues
-- 邮箱：hello@agentstore.com
 
 ## 🙏 致谢
 
@@ -213,6 +209,6 @@ export default function AgentCard({ agent, onClick }: AgentCardProps) {
 
 ---
 
-**Agent Store** - 让 AI Agent 的发现与使用变得简单高效 🚀
+**Agent Store** - Your AI Loadout 🚀
 
 *构建更好的 AI 生态，从 Agent Store 开始*

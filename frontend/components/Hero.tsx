@@ -34,30 +34,45 @@ export default function Hero() {
           >
             {/* Tag */}
             <div className="inline-flex items-center px-4 py-2 rounded-full border border-primary-500 text-primary-500 text-sm font-medium">
-              使命
+              Your AI Loadout
             </div>
 
             {/* Main Headline */}
-            <div className="space-y-4">
-              <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight space-y-2">
-                <div>Agent Store:</div>
-                <div><span className="text-primary-600">发现新一代</span></div>
-                <div>AI Native Agent</div>
+            <div className="space-y-7 mt-2 mb-4">
+              <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight space-y-4">
+                <div>像换装备一样</div>
+                <div className="mt-2 mb-2"><span className="text-primary-600">装配你的 AI 团队</span></div>
+                <div>在任何任务中表现如专业团队</div>
               </h1>
-              <p className="text-xl text-gray-700 leading-relaxed max-w-lg">
-                专注于展示 AI Native Agent 的平台，为用户提供 AI 原生的 Agent 发现和交互体验。
+              <p className="text-xl text-gray-700 leading-relaxed max-w-lg mt-4">
+                从发现到装配，Agent Store 为你提供从 <b>发现 → 装配 → 进化</b> 的成为 AI 超级个体的最短路径。
               </p>
             </div>
 
-            {/* CTA Button */}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="btn-primary"
-            >
-              开始探索
-              <ArrowRight className="w-5 h-5" />
-            </motion.button>
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="btn-primary"
+              >
+                问 Lucy 推荐
+                <ArrowRight className="w-5 h-5" />
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="btn-secondary"
+                onClick={() => {
+                  window.scrollTo({ top: 0, behavior: 'smooth' })
+                  // 假设首页锚点为 #agents，或直接跳转到 /agents 路由
+                  // 推荐用路由跳转，保持 SPA 体验
+                  window.location.href = '/#agents'
+                }}
+              >
+                浏览 Agents
+              </motion.button>
+            </div>
           </motion.div>
 
           {/* Right Content - Agent Logos Grid */}
